@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\docs"
+    "\\docs",
+    "\\views"
   ],
-  "SelectedNode": "\\streams.js",
+  "SelectedNode": "\\server.js",
   "PreviewInSolutionExplorer": false
 }
