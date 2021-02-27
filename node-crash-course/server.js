@@ -24,21 +24,48 @@ const server = http.createServer((req, res) => {
     //folder where all our html files are.
     let path = './views/';
 
+    //STATUS CODES
+            //100 range -> informational responses(like OK,etc)
+            //200 range -> success codes
+            //300 Range -> codes for redirects
+            //400 Range -> user or client error codes
+            //500 Range -> server error codes
+
     //We will add on the exact path of the html file based on the 
     //url that is asked in the request
     switch (req.url) {
         //if root path is asked by url
         case '/':
             path = path + 'index.html';
+            //setting status code to 200 because we can successfully 
+            //return this page
+            res.statusCode = 200;
             break;
         //if url wants to see about page
         case '/about':
             path += 'about.html';
+            res.statusCode = 200;
+            break;
+        //REDIRECTS
+        //Lets say that your website used to have an about me page and then you
+        //changed it to the above about page. Then if someone tries to access your
+        // about me page, if you don't redirect them then they will see a 404 error
+        //because the about me page doesn't exist anymore
+        case '/about-me':
+            //Status code for redirect -> Resource you are trying to access has been 
+            //premanently moved and we are going to redirect you
+            res.statusCode = 301;
+            //setting header location to the /about page instead of what was
+            //requested(this part does the redirect)
+            res.setHeader('Location', '/about');
+            res.end();
             break;
         //if url asks for a page that we haven't made yet
         //then we will redirect it to the 404 html page
         default:
             path += '404.html';
+            //setting status code to 404 because page doesn't exist
+            res.statusCode = 404;
             break;
     }
 
@@ -61,14 +88,7 @@ const server = http.createServer((req, res) => {
             //If you are sending multiple things then you'll have many res.write()
             //res.write(data);
             //res.end();
-
-            //STATUS CODES
-            //100 range -> informational responses(like OK,etc)
-            //200 range -> success codes
-            //300 Range -> codes for redirects
-            //400 Range -> user or client error codes
-            //500 Range -> server error codes
-
+                       
             //But since we're sending only one thing, we can send it in res.end 
             //itself
             res.end(data);

@@ -1,0 +1,11 @@
+if you use node, every time you make changes to your code,
+you'll have to exit the current process and restart the server
+But with nodemon, the moment you save your changes
+(ie: Ctrl+S), it automatically restarts your server
+for you
+To install:
+https://www.npmjs.com/package/nodemon
+Note: you have already installed it globally
+(node install -g nodemon) in your laptop which means 
+that you can use nodemon throughout different 
+projects now after installing it once
