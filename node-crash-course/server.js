@@ -1,21 +1,37 @@
 //get http module
 const http = require('http');
 const fs = require('fs');
+const _ = require('lodash'); //common practice to use underscore as name for lodash library
 
 //create a server and stores the instance of the server in the server variable
-//takes a function as argument which runs everytime server gets a request.
+//takes a function as argument which runs every time server gets a request.
 //function has 2 parameters which is request object and the response object.
 // req object contains all information about the request made such as the url
-// requested by the request. ress object is used to send our response to the browser
+// requested by the request. res object is used to send our response to the browser
 const server = http.createServer((req, res) => {
-    console.log('request made');
+    // console.log('request made');
 
     // outputs '/' which is the website visited(ie:localhost:3000/) and GET because
     // it was a method to get information
-    console.log(req.url, req.method);
+    // console.log(req.url, req.method);
 
     //set header content type for response objext(res) as plain text
     //res.setHeader('Content-Type', 'text/plain');
+
+    //lodash
+    const num = _.random(0,20);//creates a random number between 1 & 20 using lodash library
+    console.log(num); 
+    
+    //using lodash's once() method we can set this function to execute
+    //only once
+    const greet = _.once(() => {
+        console.log('hello');
+    });
+
+    //Even though we call the function twice, it'll run only once due to 
+    // lodash's once() method that we used above
+    greet();
+    greet();
 
     //set header content type for response objext(res) as html text
     res.setHeader('Content-Type', 'text/html');
@@ -53,7 +69,7 @@ const server = http.createServer((req, res) => {
         //because the about me page doesn't exist anymore
         case '/about-me':
             //Status code for redirect -> Resource you are trying to access has been 
-            //premanently moved and we are going to redirect you
+            //permanently moved and we are going to redirect you
             res.statusCode = 301;
             //setting header location to the /about page instead of what was
             //requested(this part does the redirect)

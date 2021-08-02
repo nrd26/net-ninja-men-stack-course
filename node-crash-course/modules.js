@@ -31,7 +31,7 @@ console.log(people, ages);
 //libraries in node
 //OS -> gives info about current OS
 const os = require('os');
-// calling different methods in OS can give whatever specfic
+// calling different methods in OS can give whatever specific
 //info you need about the OS
 console.log(os.platform(), os.homedir());
 //the above gives info about the platform we are using and the
