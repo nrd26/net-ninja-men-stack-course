@@ -1,0 +1,4 @@
+If you want to share the code with other people, you can easily do it through GitHub or something but the node_modules
+folder will be huge. So what we do is, we don't upload the node_modules folder instead, send the folder without node_modules.
+The other person can just use the package.json file where all the dependencies are already there. Once in the path of the folder,
+run npm install and it installs all necessary libraries.
